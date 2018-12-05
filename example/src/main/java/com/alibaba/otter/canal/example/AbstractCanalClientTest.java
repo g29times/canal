@@ -29,7 +29,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 /**
  * 测试基类
- * 
+ *
  * @author jianghang 2013-4-15 下午04:17:12
  * @version 1.0.4
  */
@@ -171,7 +171,7 @@ public class AbstractCanalClientTest {
         return position;
     }
 
-    protected void printEntry(List<Entry> entrys) {
+    protected static void printEntry(List<Entry> entrys) {
         for (Entry entry : entrys) {
             long executeTime = entry.getHeader().getExecuteTime();
             long delayTime = new Date().getTime() - executeTime;
@@ -251,7 +251,7 @@ public class AbstractCanalClientTest {
         }
     }
 
-    protected void printColumn(List<Column> columns) {
+    protected static void printColumn(List<Column> columns) {
         for (Column column : columns) {
             StringBuilder builder = new StringBuilder();
             try {
@@ -274,7 +274,7 @@ public class AbstractCanalClientTest {
         }
     }
 
-    protected void printXAInfo(List<Pair> pairs) {
+    protected static void printXAInfo(List<Pair> pairs) {
         if (pairs == null) {
             return;
         }

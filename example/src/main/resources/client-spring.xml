@@ -37,7 +37,7 @@
     <bean name="canalConnectorClient" class="com.alibaba.otter.canal.example.db.CanalConnectorClient" abstract="true">
         <property name="zkServers" value="${zk.servers:127.0.0.1:2181}"/>
         <property name="debug" value="${client.debug:true}"/>
-        <property name="destination" value="${client.destination:example}"/>
+        <property name="destination" value="${client.destination:canal}"/>
         <property name="username" value="${client.username:canal}"/>
         <property name="password" value="${client.password:canal}"/>
         <property name="exceptionStrategy" value="${client.exceptionstrategy:1}"/>

@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.alibaba.otter</groupId>
     <artifactId>canal</artifactId>
@@ -6,11 +7,13 @@
     <name>canal module for otter ${project.version}</name>
     <version>1.1.3-SNAPSHOT</version>
     <url>https://github.com/alibaba/canal</url>
+
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
+
     <developers>
         <developer>
             <name>agapple</name>
@@ -51,6 +54,7 @@
             <url>http://repo1.maven.org/maven2</url>
             <releases>
                 <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
             </releases>
             <snapshots>
                 <enabled>false</enabled>
@@ -61,6 +65,7 @@
             <url>http://download.java.net/maven/2/</url>
             <releases>
                 <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
             </releases>
             <snapshots>
                 <enabled>false</enabled>
@@ -75,6 +80,7 @@
             </releases>
             <snapshots>
                 <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
         <repository>
@@ -86,6 +92,7 @@
             </releases>
             <snapshots>
                 <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
     </repositories>
@@ -96,8 +103,8 @@
         <maven.test.skip>true</maven.test.skip>
         <downloadSources>true</downloadSources>
         <!-- compiler settings properties -->
-        <java_source_version>1.7</java_source_version>
-        <java_target_version>1.7</java_target_version>
+        <java_source_version>1.8</java_source_version>
+        <java_target_version>1.8</java_target_version>
         <file_encoding>UTF-8</file_encoding>
         <spring_version>3.2.18.RELEASE</spring_version>
     </properties>
@@ -124,29 +131,29 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
-                    <version>${spring_version}</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring_version}</version>
             </dependency>
             <dependency>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-aop</artifactId>
-                    <version>${spring_version}</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring_version}</version>
             </dependency>
             <dependency>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-context</artifactId>
-                    <version>${spring_version}</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring_version}</version>
             </dependency>
             <dependency>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-jdbc</artifactId>
-                    <version>${spring_version}</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring_version}</version>
             </dependency>
             <dependency>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-orm</artifactId>
-                    <version>${spring_version}</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring_version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -387,16 +394,16 @@
                 <version>2.9.1</version>
                 <executions>
                     <execution>
-                            <id>attach-javadocs</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                  <encoding>${file_encoding}</encoding>
-                  <charset>${file_encoding}</charset>
-                  <additionalparam>-Xdoclint:none</additionalparam>
+                    <encoding>${file_encoding}</encoding>
+                    <charset>${file_encoding}</charset>
+                    <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
             </plugin>
         </plugins>

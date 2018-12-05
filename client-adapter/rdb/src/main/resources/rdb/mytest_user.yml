@@ -1,13 +1,13 @@
 dataSourceKey: defaultDS
-destination: example
-outerAdapterKey: oracle1
+destination: canal
+outerAdapterKey: mysql1
 concurrent: true
 dbMapping:
-  database: mytest
-  table: user
-  targetTable: mytest.tb_user
+  database: fj_prod_main
+  table: user_read_ability
+  targetTable: mytest.user_read_ability
   targetPk:
-    id: id
+    id: user_id
   mapAll: true
 #  targetColumns:
 #    id:

@@ -8,12 +8,12 @@ logging:
     com.alibaba.otter.canal.client.adapter.rdb: DEBUG
 spring:
   jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: GMT+8
+    date-format: 'yyyy-MM-dd HH:mm:ss'
+    time-zone: 'GMT+8'
     default-property-inclusion: non_null
 
 canal.conf:
-  canalServerHost: 127.0.0.1:11111
+  canalServerHost: '192.144.164.251:11111'
 #  zookeeperHosts: slave1:2181
 #  mqServers: slave1:6667 #or rocketmq
 #  flatMessage: true
@@ -24,24 +24,24 @@ canal.conf:
   accessKey:
   secretKey:
   mode: tcp # kafka rocketMQ
-#  srcDataSources:
-#    defaultDS:
-#      url: jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true
-#      username: root
-#      password: 121212
+  srcDataSources:
+    defaultDS:
+      url: jdbc:mysql://bj-cdb-g40opl50.sql.tencentcdb.com:63057/fj_prod_main?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: Fenji@1314
   canalAdapters:
-  - instance: example # canal instance Name or mq topic name
+  - instance: canal # canal instance Name or mq topic name
     groups:
     - groupId: g1
       outerAdapters:
       - name: logger
-#      - name: rdb
-#        key: oracle1
-#        properties:
-#          jdbc.driverClassName: oracle.jdbc.OracleDriver
-#          jdbc.url: jdbc:oracle:thin:@localhost:49161:XE
-#          jdbc.username: mytest
-#          jdbc.password: m121212
+      - name: rdb
+        key: mysql1
+        properties:
+          jdbc.driverClassName: com.mysql.jdbc.Driver
+          jdbc.url: jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+          jdbc.username: root
+          jdbc.password: root
 #      - name: rdb
 #        key: postgres1
 #        properties:

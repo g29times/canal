@@ -1,5 +1,19 @@
 package com.alibaba.otter.canal.client.adapter.rdb.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.otter.canal.client.adapter.rdb.config.MappingConfig;
+import com.alibaba.otter.canal.client.adapter.rdb.config.MappingConfig.DbMapping;
+import com.alibaba.otter.canal.client.adapter.rdb.support.BatchExecutor;
+import com.alibaba.otter.canal.client.adapter.rdb.support.SingleDml;
+import com.alibaba.otter.canal.client.adapter.rdb.support.SyncUtil;
+import com.alibaba.otter.canal.client.adapter.support.Dml;
+import com.alibaba.otter.canal.client.adapter.support.Util;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -12,22 +26,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import javax.sql.DataSource;
-
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.otter.canal.client.adapter.rdb.config.MappingConfig;
-import com.alibaba.otter.canal.client.adapter.rdb.config.MappingConfig.DbMapping;
-import com.alibaba.otter.canal.client.adapter.rdb.support.BatchExecutor;
-import com.alibaba.otter.canal.client.adapter.rdb.support.SingleDml;
-import com.alibaba.otter.canal.client.adapter.rdb.support.SyncUtil;
-import com.alibaba.otter.canal.client.adapter.support.Dml;
-import com.alibaba.otter.canal.client.adapter.support.Util;
-
 /**
  * RDB同步操作业务
  *
@@ -36,21 +34,21 @@ import com.alibaba.otter.canal.client.adapter.support.Util;
  */
 public class RdbSyncService {
 
-    private static final Logger                     logger             = LoggerFactory.getLogger(RdbSyncService.class);
+    private static final Logger logger = LoggerFactory.getLogger(RdbSyncService.class);
 
     private final Map<String, Map<String, Integer>> COLUMNS_TYPE_CACHE = new ConcurrentHashMap<>();
 
     private Map<String, Map<String, MappingConfig>> mappingConfigCache;                                                // 库名-表名对应配置
 
-    private int                                     threads            = 3;
+    private int threads = 3;
 
-    private List<SyncItem>[]                        dmlsPartition;
-    private BatchExecutor[]                         batchExecutors;
-    private ExecutorService[]                       executorThreads;
+    private List<SyncItem>[] dmlsPartition;
+    private BatchExecutor[] batchExecutors;
+    private ExecutorService[] executorThreads;
 
     @SuppressWarnings("unchecked")
     public RdbSyncService(Map<String, Map<String, MappingConfig>> mappingConfigCache, DataSource dataSource,
-                          Integer threads){
+                          Integer threads) {
         try {
             if (threads != null) {
                 this.threads = threads;
@@ -76,7 +74,7 @@ public class RdbSyncService {
                 String database = dml.getDatabase();
                 String table = dml.getTable();
                 Map<String, MappingConfig> configMap = mappingConfigCache
-                    .get(destination + "." + database + "." + table);
+                        .get(destination + "." + database + "." + table);
 
                 if (configMap == null) {
                     continue;
@@ -132,12 +130,12 @@ public class RdbSyncService {
                 String type = dml.getType();
                 if (type != null && type.equalsIgnoreCase("INSERT")) {
                     insert(batchExecutor, config, dml);
-                } else if (type != null && type.equalsIgnoreCase("UPDATE")) {
+                } /*else if (type != null && type.equalsIgnoreCase("UPDATE")) {
                     update(batchExecutor, config, dml);
                 } else if (type != null && type.equalsIgnoreCase("DELETE")) {
                     delete(batchExecutor, config, dml);
-                }
-                if (logger.isDebugEnabled()) {
+                }*/
+                if (logger.isDebugEnabled() && type != null && type.equalsIgnoreCase("INSERT")) {
                     logger.debug("DML: {}", JSON.toJSONString(dml, SerializerFeature.WriteMapNullValue));
                 }
             }
@@ -150,7 +148,7 @@ public class RdbSyncService {
      * 插入操作
      *
      * @param config 配置项
-     * @param dml DML数据
+     * @param dml    DML数据
      */
     private void insert(BatchExecutor batchExecutor, MappingConfig config, SingleDml dml) {
         Map<String, Object> data = dml.getData();
@@ -207,7 +205,7 @@ public class RdbSyncService {
      * 更新操作
      *
      * @param config 配置项
-     * @param dml DML数据
+     * @param dml    DML数据
      */
     private void update(BatchExecutor batchExecutor, MappingConfig config, SingleDml dml) {
         Map<String, Object> data = dml.getData();
@@ -299,7 +297,7 @@ public class RdbSyncService {
     /**
      * 获取目标字段类型
      *
-     * @param conn sql connection
+     * @param conn   sql connection
      * @param config 映射配置
      * @return 字段sqlType
      */
@@ -365,9 +363,9 @@ public class RdbSyncService {
     private class SyncItem {
 
         private MappingConfig config;
-        private SingleDml     singleDml;
+        private SingleDml singleDml;
 
-        private SyncItem(MappingConfig config, SingleDml singleDml){
+        private SyncItem(MappingConfig config, SingleDml singleDml) {
             this.config = config;
             this.singleDml = singleDml;
         }
