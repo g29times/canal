@@ -15,20 +15,27 @@ spring:
 canal.conf:
   canalServerHost: '192.144.164.251:11111'
 #  zookeeperHosts: slave1:2181
-#  mqServers: slave1:6667 #or rocketmq
-#  flatMessage: true
+  mqServers: 192.144.170.156:9092 #or rocketmq
+  flatMessage: true
   batchSize: 500
   syncBatchSize: 1000
   retries: 0
   timeout:
   accessKey:
   secretKey:
-  mode: tcp # kafka rocketMQ
+  mode: kafka # tcp kafka rocketMQ
   srcDataSources:
     defaultDS:
       url: jdbc:mysql://bj-cdb-g40opl50.sql.tencentcdb.com:63057/fj_prod_main?useUnicode=true&characterEncoding=utf-8
       username: root
       password: Fenji@1314
+  mqTopics:                         # MQ topic租, 如果是kafka或者rockeMQ模式可配置此项, 与canalInstances不能并存
+  - mqMode: kafka                   # MQ的模式: kafak/rocketMQ
+    topic: canal                    # MQ topic
+    groups:                         # group组
+    - groupId: g2                   # group id
+      outAdapters:                  # 适配器列表, 以下配置和canalInstances中一样
+      - name: logger
   canalAdapters:
   - instance: canal # canal instance Name or mq topic name
     groups:

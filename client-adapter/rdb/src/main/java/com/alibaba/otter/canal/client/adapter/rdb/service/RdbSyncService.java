@@ -130,11 +130,11 @@ public class RdbSyncService {
                 String type = dml.getType();
                 if (type != null && type.equalsIgnoreCase("INSERT")) {
                     insert(batchExecutor, config, dml);
-                } /*else if (type != null && type.equalsIgnoreCase("UPDATE")) {
+                } else if (type != null && type.equalsIgnoreCase("UPDATE")) {
                     update(batchExecutor, config, dml);
                 } else if (type != null && type.equalsIgnoreCase("DELETE")) {
                     delete(batchExecutor, config, dml);
-                }*/
+                }
                 if (logger.isDebugEnabled() && type != null && type.equalsIgnoreCase("INSERT")) {
                     logger.debug("DML: {}", JSON.toJSONString(dml, SerializerFeature.WriteMapNullValue));
                 }
