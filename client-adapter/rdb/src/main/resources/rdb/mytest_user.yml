@@ -3,11 +3,11 @@ destination: canal
 outerAdapterKey: mysql1
 concurrent: true
 dbMapping:
-  database: fj_prod_main
-  table: user_read_ability
-  targetTable: mytest.user_read_ability
+  database: fj_prod_data
+  table: behavior_read_history
+  targetTable: mytest.behavior_read_history
   targetPk:
-    id: user_id
+    id: b_read_id
   mapAll: true
 #  targetColumns:
 #    id:

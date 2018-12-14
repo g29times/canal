@@ -14,7 +14,7 @@
 		</encoder>
 	</appender>
 	
-	<logger name="com.alibaba.otter.canal.example.AbstractCanalClientTest" additivity="false">  
+	<logger name="com.alibaba.otter.canal.example.test.AbstractCanalClientTest" additivity="false">
         <level value="INFO" />  
         <appender-ref ref="ENTRY_LOG" />
     </logger>

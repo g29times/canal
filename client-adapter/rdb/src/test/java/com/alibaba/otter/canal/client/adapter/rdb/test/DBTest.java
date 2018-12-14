@@ -24,7 +24,7 @@ public class DBTest {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true");
         dataSource.setUsername("root");
-        dataSource.setPassword("121212");
+        dataSource.setPassword("root");
 
         dataSource.setInitialSize(1);
         dataSource.setMinIdle(1);

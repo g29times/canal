@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * 启动入口
+ * TCP连接模式客户端
  *
  * @author rewerma @ 2018-10-20
  * @version 1.0.0

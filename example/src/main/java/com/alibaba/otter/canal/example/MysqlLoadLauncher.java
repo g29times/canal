@@ -1,5 +1,6 @@
-package com.alibaba.otter.canal.example.db;
+package com.alibaba.otter.canal.example;
 
+import com.alibaba.otter.canal.example.db.ServiceLocator;
 import com.alibaba.otter.canal.example.db.mysql.MysqlClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

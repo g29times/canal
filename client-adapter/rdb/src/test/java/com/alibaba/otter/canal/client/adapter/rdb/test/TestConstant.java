@@ -8,7 +8,7 @@ public class TestConstant {
 
     public final static String    jdbcUrl      = "jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true";
     public final static String    jdbcUser     = "root";
-    public final static String    jdbcPassword = "121212";
+    public final static String    jdbcPassword = "root";
 
     public static DruidDataSource dataSource;
 

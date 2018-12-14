@@ -14,7 +14,7 @@ import com.alibaba.otter.canal.server.CanalMQStarter;
 import com.alibaba.otter.canal.spi.CanalMQProducer;
 
 /**
- * canal独立版本启动的入口类
+ * canal独立版本启动的入口类 | 不可用
  *
  * @author jianghang 2012-11-6 下午05:20:49
  * @version 1.0.0

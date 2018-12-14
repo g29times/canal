@@ -1,4 +1,4 @@
-package com.alibaba.otter.canal.example;
+package com.alibaba.otter.canal.example.test;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;

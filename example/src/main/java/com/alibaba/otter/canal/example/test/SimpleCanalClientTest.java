@@ -1,4 +1,4 @@
-package com.alibaba.otter.canal.example;
+package com.alibaba.otter.canal.example.test;
 
 import com.alibaba.otter.canal.client.CanalConnector;
 import com.alibaba.otter.canal.client.CanalConnectors;
@@ -58,7 +58,7 @@ public class SimpleCanalClientTest extends AbstractCanalClientTest {
         int emptyCount = 0;
         try {
             connector.connect();
-            connector.subscribe("fj_prod_main.user_read_ability");
+            connector.subscribe("fj_prod_data.behavior_read_history");
             connector.rollback();
             int totalEmptyCount = 120;
             while (emptyCount < totalEmptyCount) {

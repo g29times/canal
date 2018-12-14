@@ -1,4 +1,4 @@
-package com.alibaba.otter.canal.example;
+package com.alibaba.otter.canal.example.test;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.ArrayBlockingQueue;
