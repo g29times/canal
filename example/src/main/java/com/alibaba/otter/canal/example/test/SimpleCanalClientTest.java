@@ -53,7 +53,7 @@ public class SimpleCanalClientTest extends AbstractCanalClientTest {
     public static void batch() {
         // 创建链接
         CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress(
-                "192.144.164.251", 11111), "canal", "", "");
+                "127.0.0.1", 11111), "canal", "", "");
         int batchSize = 1000;
         int emptyCount = 0;
         try {
