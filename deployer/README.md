@@ -1,2 +1,2 @@
-测试不通过
+测试通过
 CanalLauncher

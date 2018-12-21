@@ -28,9 +28,10 @@ canal.conf:
     defaultDS:
 #      bj-cdb-r1cruzc2.sql.tencentcdb.com:63058 fj_prod_data
 #      bj-cdb-g40opl50.sql.tencentcdb.com:63057 fj_prod_main
-      url: jdbc:mysql://bj-cdb-r1cruzc2.sql.tencentcdb.com:63058/fj_prod_data?useUnicode=true&characterEncoding=utf-8
+      url: jdbc:mysql://127.0.0.1:3306/ds_0?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+      # jdbc:mysql://bj-cdb-r1cruzc2.sql.tencentcdb.com:63058/fj_prod_data?useUnicode=true&characterEncoding=utf-8
       username: root
-      password: Fenji@1314
+      password: root # Fenji@1314
   mqTopics:                         # MQ topic租, 如果是kafka或者rockeMQ模式可配置此项, 与canalInstances不能并存
   - mqMode: kafka                   # MQ的模式: kafak/rocketMQ
     topic: canal                    # MQ topic
@@ -43,12 +44,12 @@ canal.conf:
     groups:
     - groupId: g1
       outerAdapters:
-      - name: logger
+#      - name: logger
       - name: rdb
         key: mysql1
         properties:
           jdbc.driverClassName: com.mysql.jdbc.Driver # 本地库8.0版注意连接属性
-          jdbc.url: jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+          jdbc.url: jdbc:mysql://127.0.0.1:3306/ds_1?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
           jdbc.username: root
           jdbc.password: root
 #      - name: rdb
